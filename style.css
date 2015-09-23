@@ -28,3 +28,7 @@ p {
 .small {
     font-size: 1em;
 }
+
+.videoblock {
+    transform: rotate(90deg);
+}
