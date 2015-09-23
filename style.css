@@ -1,0 +1,30 @@
+.yellow {
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+    position:fixed;
+}
+
+.red {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position:fixed;
+}
+
+.blue {
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position:fixed;
+}
+
+
+p {
+    font-size: 4em;
+    margin: 5px;
+}
+
+.small {
+    font-size: 1em;
+}
