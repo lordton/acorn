@@ -1,20 +1,31 @@
 $( document ).ready(function() {
-    $("#gyro2").text( "JS ok." );
-    console.log("yesp")
-
-
-
+//начало элементов управления видео
   $('video').mediaelementplayer({
     alwaysShowControls: true,
     videoVolume: 'horizontal',
     features: ['playpause','progress','volume','fullscreen']
   });
-  
+//конец элементов управления видео
+  });
+
 $('video')[0].player.play();
 
+var i=1
 
+$(function(){
+setInterval(oneSecondFunction, 5000);
+});
 
-  });
+function oneSecondFunction() {
+console.log("onesecond")
+if (i == 0){
+  $('video')[0].player.play();
+};
+if (i == 1){
+$('video')[0].player.pause();
+};
+// stuff you want to do every second
+}
 
 
 window.ondeviceorientation = function(event) {
@@ -24,14 +35,29 @@ window.ondeviceorientation = function(event) {
 $("#gyro1").text("alpha "+alpha);
 
 //почасовой против
+
+
+
 if (beta > 100 ){
   $("#gyro2").text("beta "+"против часовой "+beta);
+  var i=0;
+  console.log("paused because tilted right")
+  $("#gyro7").text("i "+0);
+  
 }
 if (beta < -100) {
   $("#gyro2").text("beta "+"по часовой "+beta);
+  var i=0;
+  console.log("paused because tilted left")
+  $("#gyro7").text("i "+0);
+  
 }
 if (beta >= -100 && beta <=100 ) {
   $("#gyro2").text("beta "+"OK "+beta);
+  var i=1;
+  $("#gyro7").text("i "+1);
+
+  
 }
 
 //наклон вперед назад
