@@ -29,7 +29,8 @@ p {
     font-size: 1em;
 }
 
-.videoblock {
-    transform: rotate(90deg);
+video {
+    width: 100%;
+    height: auto;
 }
 
