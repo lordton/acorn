@@ -21,10 +21,11 @@
 
 
 p {
-    font-size: 4em;
+    font-size: 2em;
     margin: 5px;
     color: white;
     padding: 5%;
+    font-style: monospace;
 }
 
 .small {
@@ -57,4 +58,13 @@ padding:0;
     height: 100%;
     z-index: 50000;
 
+}
+
+.button1{
+    position: relative;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    padding: 5px;
+    color: black;
 }
