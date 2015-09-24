@@ -1,31 +1,20 @@
 $( document ).ready(function() {
-//начало элементов управления видео
+    $("#gyro2").text( "JS ok." );
+    console.log("yesp")
+
+
+
   $('video').mediaelementplayer({
     alwaysShowControls: true,
     videoVolume: 'horizontal',
     features: ['playpause','progress','volume','fullscreen']
   });
-//конец элементов управления видео
-  });
 
 $('video')[0].player.play();
 
-var i=1
 
-$(function(){
-setInterval(oneSecondFunction, 5000);
-});
 
-function oneSecondFunction() {
-console.log("onesecond")
-if (i == 0){
-  $('video')[0].player.play();
-};
-if (i == 1){
-$('video')[0].player.pause();
-};
-// stuff you want to do every second
-}
+  });
 
 
 window.ondeviceorientation = function(event) {
@@ -35,40 +24,28 @@ window.ondeviceorientation = function(event) {
 $("#gyro1").text("alpha "+alpha);
 
 //почасовой против
-
-
-
 if (beta > 100 ){
   $("#gyro2").text("beta "+"против часовой "+beta);
-  var i=0;
-  console.log("paused because tilted right")
-  $("#gyro7").text("i "+0);
-  
+  $('video')[0].player.pause();
 }
 if (beta < -100) {
   $("#gyro2").text("beta "+"по часовой "+beta);
-  var i=0;
-  console.log("paused because tilted left")
-  $("#gyro7").text("i "+0);
-  
+  $('video')[0].player.pause();
 }
-if (beta >= -100 && beta <=100 ) {
+if (beta >= -100 && beta <=100 && gamma >= -700 && gamma <= -500 ) {
   $("#gyro2").text("beta "+"OK "+beta);
-  var i=1;
-  $("#gyro7").text("i "+1);
-
-  
+  $("#gyro3").text("gamma "+"ОК "+gamma);
+  $('video')[0].player.play();
 }
 
 //наклон вперед назад
 if (gamma > -500) {
   $("#gyro3").text("gamma "+"на себя "+gamma);
+  $('video')[0].player.pause();
 }
 if (gamma < -700) {
   $("#gyro3").text("gamma "+"от себя "+gamma);
-}
-if (gamma >= -700 && gamma <= -500 ) {
-  $("#gyro3").text("gamma "+"ОК "+gamma);
+  $('video')[0].player.pause();
 }
 
 
