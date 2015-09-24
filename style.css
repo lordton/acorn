@@ -25,7 +25,7 @@ p {
     margin: 5px;
     color: white;
     padding: 5%;
-    font-style: monospace;
+    font-family: monospace;
 }
 
 .small {
@@ -67,5 +67,8 @@ padding:0;
     background-color: white;
     padding: 10px;
     margin-left: 5%;
+    font-family: monospace;
     color: black;
+    font-size: 2em;
+    z-index: 50001;
 }

@@ -10,7 +10,14 @@ $( document ).ready(function() {
     features: ['playpause','progress','volume','fullscreen']
   });
 
-$('video')[0].player.play();
+
+
+$( "#button1" ).click(function() {     
+    $('#modal1').hide();
+    console.log("click");
+    $('video')[0].player.play();
+    });
+
 
 
 
@@ -68,5 +75,8 @@ $("#gyro6 ").text("az "+Math.round(az*10));
   }
 }
 
+Interval 
+
+Consol.log
 
 
