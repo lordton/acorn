@@ -9,7 +9,7 @@ $( document ).ready(function() {
     videoVolume: 'horizontal',
     features: ['playpause','progress','volume','fullscreen']
   });
-  
+
 $('video')[0].player.play();
 
 
@@ -26,23 +26,26 @@ $("#gyro1").text("alpha "+alpha);
 //почасовой против
 if (beta > 100 ){
   $("#gyro2").text("beta "+"против часовой "+beta);
+  $('video')[0].player.pause();
 }
 if (beta < -100) {
   $("#gyro2").text("beta "+"по часовой "+beta);
+  $('video')[0].player.pause();
 }
-if (beta >= -100 && beta <=100 ) {
+if (beta >= -100 && beta <=100 && gamma >= -700 && gamma <= -500 ) {
   $("#gyro2").text("beta "+"OK "+beta);
+  $("#gyro3").text("gamma "+"ОК "+gamma);
+  $('video')[0].player.play();
 }
 
 //наклон вперед назад
 if (gamma > -500) {
   $("#gyro3").text("gamma "+"на себя "+gamma);
+  $('video')[0].player.pause();
 }
 if (gamma < -700) {
   $("#gyro3").text("gamma "+"от себя "+gamma);
-}
-if (gamma >= -700 && gamma <= -500 ) {
-  $("#gyro3").text("gamma "+"ОК "+gamma);
+  $('video')[0].player.pause();
 }
 
 
