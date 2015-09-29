@@ -8,10 +8,32 @@ $( document ).ready(function() {
     features: ['playpause','progress','volume','fullscreen']
   });
 
-var level = 0;
+
+
+
+
+//!!!!!!!!!!!!!!!!
+var level = 1; //ВЕРНУТЬ В НОЛЬ 
+
+
+
+
+
+
+
+
 var restcounter = 0;
 var restcountertext = "счетчик";
 console.log("level111111111111111111 "+level);
+
+
+
+
+function resetter(){
+restcounter = 0;
+}
+
+
 
 $( "#button1" ).click(function() {     
     $('#modal1').hide();
@@ -86,17 +108,17 @@ $("#gyro7").text(restcountertext);
 
 
 
-if (rest <= 70){
+if (rest <= 65){
   restcounter = restcounter +1; 
 };
-if (rest > 70 && rest <= 150){
-  restcounter = restcounter -1; 
+if (rest > 65 && rest <= 150){
+  restcounter = restcounter -2; 
 };
 if (rest > 150 && rest <= 400){
   restcounter = restcounter -3; 
 };
 if (rest > 400 && rest <= 1000){
-  restcounter = restcounter + 10; 
+  restcounter = restcounter + 5; 
 };
 
 if (rest > 1000 && rest <= 2000){
@@ -112,13 +134,17 @@ if (restcounter>0 && restcounter<300){
   restcountertext=restcounter
 };
 
-if (restcounter>=300){
-  restcountertext="плохо"
+if (restcounter>=300 && restcounter<400){
+  restcountertext="плохо";
+  restcountertext="Пожалуйста держите телефон в руках, не тряся им";
+  restcounter=401;
 };
 
-if (restcounter>=400){
-  restcounter=0
+if (restcounter>400){
+setTimeout(resetter, 3000);
+
 };
+
 
   if (rotation != null) {
     arAlpha = Math.round(rotation.alpha);
