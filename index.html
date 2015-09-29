@@ -1,6 +1,7 @@
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <title>CODENAME ACORN</title>
 
+<html manifest=”acorn.appcache”>
 <script src="jquery-2.1.4.js"></script>
 <script src="script.js"></script>
 <link href="style.css" type="text/css" rel="stylesheet" />
@@ -10,12 +11,24 @@
 <script src="jquery.js"></script>
 <script src="mediaelement-and-player.min.js"></script>
 <link rel="stylesheet" href="mediaelementplayer.css" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
 <!-- плеер кончился -->
 
 
 </head>
 <body>
-	<!-- 
+	
+
+
+
+<div class="blue">
+</div>
+<div class="yellow">
+</div>
+<div class="red">
+</div> 
+
+<div class="bgrrr">
 <p id="gyro1" class="small">Alpha</p>
 <p id="gyro2">Beta</p>
 <p id="gyro3">Gamma</p>
@@ -25,30 +38,23 @@
 <p id="gyro5" class="small">AY</p>
 <p id="gyro6" class="small">AZ</p>
 
-
-
-<div class="blue">
-</div>
-<div class="yellow">
-</div>
-<div class="red">
-</div> -->
-
-<div class="bgrrr">
-<video width="100%" height="auto" poster="other.jpg">
+	
+<!-- <video width="100%" height="auto" poster="other.jpg" webkit-playsinline>
   <source src="other.mp4" type="video/mp4">
-</video>
+</video>-->
 </div>
 
-<div class="modal1">
+<!-- 
+<div class="modal1" id="modal1">
 
-<p> <img src="acorn.jpg"> <br><br> Добро пожаловать в альфа версию приложения под кодовым названием Acorn. <br><br> Пожалуйста удобно сядьте, выпрямьте спину и держите смартфон перед собой в горизонтальном положении. <br><br>
-<div class="button1">
+<p id="text1">Добро пожаловать в альфа версию приложения под кодовым названием Acorn. <br> Пожалуйста удобно сядьте, выпрямьте спину и держите смартфон перед собой в горизонтальном положении. 
+</p>
+<button class="button1" id="button1">
 Продолжить
-</div></p>
+</button>
 
 </div>
-
+-->
 
 </div>
 
