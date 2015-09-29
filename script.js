@@ -2,12 +2,15 @@ $( document ).ready(function() {
     $("#gyro2").text( "JS ok." );
     console.log("yesp");
 
+
   $('video').mediaelementplayer({
     alwaysShowControls: true,
     videoVolume: 'horizontal',
     features: ['playpause','progress','volume','fullscreen']
   });
 
+$('video')[0].player.play();
+$('video')[0].player.pause();
 
 
 
@@ -21,6 +24,7 @@ console.log("level111111111111111111 "+level);
 var restcounter = 0;
 //текстовое отображение переменной restcounter
 var restcountertext = "счетчик";
+
 //функция  resetter перезагружает restcounter при достижении 300
 function resetter(){
 restcounter = 0;
@@ -29,7 +33,9 @@ onoff();
 }
 
 
-
+//функция onoff контролирует включение выключение видео относительно того что скажут датчики
+//gyro_sensor отслеживает наклон
+//acc_sensor  отслеживает ускорение
 function onoff(){
   if (level == 1) {
     $("#gyro4").text(gyro_sensor+" "+acc_sensor);
@@ -40,19 +46,23 @@ function onoff(){
       $('#modal1').hide();
       $('video')[0].player.play();
     }
+  } else {
+    $('video')[0].player.pause();
   }
 }
 
-
-
+//кнопка включает видео в самые первый раз
 $( "#button1" ).click(function() {     
-    $('#modal1').hide();
     console.log("click");
-    $('video')[0].player.play();
     level = 1;
+    gyro_sensor="good";
+    acc_sensor="good";
+    $( "#button1" ).hide();
+    onoff();
     });
 
 
+//все что происходит по гироскопу те фактически всегда
 window.ondeviceorientation = function(event) {
   alpha = Math.round(event.alpha*10);
   beta = Math.round(event.beta*10);
@@ -60,7 +70,7 @@ window.ondeviceorientation = function(event) {
 $("#gyro1").text("alpha "+alpha);
 
 
-//почасовой или против (beta)
+//отслеживание наклона по часовой или против (сенсор beta)
 if (beta > 100 && level == 1) {
     $("#gyro2").text("beta " + "против часовой " + beta);
     $('video')[0].player.pause();
@@ -82,7 +92,7 @@ if (beta >= -100 && beta <= 100 && gamma >= -700 && gamma <= -500 && level == 1)
 
 }
 
-//наклон вперед назад (gamma)
+//отслеживание наклона вперед назад (сенсор gamma)
 if (gamma > -500 && level == 1) {
     $("#gyro3").text("gamma " + "на себя " + gamma);
     gyro_sensor = "bad"
@@ -99,6 +109,8 @@ if (gamma < -700 && level == 1) {
 
 }
 
+
+//все что происходит по ускорению те фактически всегда
 window.ondevicemotion = function(event) {
   ax = event.accelerationIncludingGravity.x
   ay = event.accelerationIncludingGravity.y
