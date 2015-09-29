@@ -157,7 +157,7 @@ if (restcounter>0 && restcounter<300){
   restcountertext=restcounter
 };
 
-if (restcounter>=300 && restcounter<400){
+if (restcounter>=300 && restcounter<400 && level == 1){
   restcountertext="плохо";
   $("#text1").text("Пожалуйста держите телефон в руках, не тряся им");
   restcounter=401;
