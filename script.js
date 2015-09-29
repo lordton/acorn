@@ -12,25 +12,35 @@ $( document ).ready(function() {
 
 
 
-//!!!!!!!!!!!!!!!!
-var level = 1; //ВЕРНУТЬ В НОЛЬ 
-
-
-
-
-
-
-
-
-var restcounter = 0;
-var restcountertext = "счетчик";
+//переменная level  включает/выключает трекинг по гироскопу
+var level = 0; 
 console.log("level111111111111111111 "+level);
 
 
-
-
+//переменная restcounter считает "тряску" и "покой" устройства
+var restcounter = 0;
+//текстовое отображение переменной restcounter
+var restcountertext = "счетчик";
+//функция  resetter перезагружает restcounter при достижении 300
 function resetter(){
 restcounter = 0;
+acc_sensor = "good";
+onoff();
+}
+
+
+
+function onoff(){
+  if (level == 1) {
+    $("#gyro4").text(gyro_sensor+" "+acc_sensor);
+    if (gyro_sensor=="bad" || acc_sensor=="bad"){ //
+      $('video')[0].player.pause();
+      $('#modal1').show();
+    } else {
+      $('#modal1').hide();
+      $('video')[0].player.play();
+    }
+  }
 }
 
 
@@ -50,39 +60,40 @@ window.ondeviceorientation = function(event) {
 $("#gyro1").text("alpha "+alpha);
 
 
-//почасовой против
-if (beta > 100 && level == 1){
-  $("#gyro2").text("beta "+"против часовой "+beta);
-  $('video')[0].player.pause();
-  $('#modal1').show();
-  $("#text1").text( "Верните телефон в правильное положение (Против часовой стрелки)" );
+//почасовой или против (beta)
+if (beta > 100 && level == 1) {
+    $("#gyro2").text("beta " + "против часовой " + beta);
+    $('video')[0].player.pause();
+    gyro_sensor = "bad";
+    $("#text1").text("Верните телефон в правильное положение (Против часовой стрелки)");
+    onoff();
 }
 if (beta < -100 && level == 1) {
-  $("#gyro2").text("beta "+"по часовой "+beta);
-  $('video')[0].player.pause();
-  $('#modal1').show();
-  $("#text1").text( "Верните телефон в правильное положение (По часовой стрелке)" );
+    $("#gyro2").text("beta " + "по часовой " + beta);
+    gyro_sensor = "bad";
+    $("#text1").text("Верните телефон в правильное положение (По часовой стрелке)");
+    onoff();
 }
-if (beta >= -100 && beta <=100 && gamma >= -700 && gamma <= -500 && level == 1 ) {
-  $("#gyro2").text("beta "+"OK "+beta);
-  $("#gyro3").text("gamma "+"ОК "+gamma);
-  $('video')[0].player.play();
-  $('#modal1').hide();
+if (beta >= -100 && beta <= 100 && gamma >= -700 && gamma <= -500 && level == 1) {
+    $("#gyro2").text("beta " + "OK " + beta);
+    $("#gyro3").text("gamma " + "ОК " + gamma);
+    gyro_sensor = "good";
+    onoff();
 
 }
 
-//наклон вперед назад
+//наклон вперед назад (gamma)
 if (gamma > -500 && level == 1) {
-  $("#gyro3").text("gamma "+"на себя "+gamma);
-  $('video')[0].player.pause();
-  $('#modal1').show();
-  $("#text1").text( "Верните телефон в правильное положение (На себя)" );
+    $("#gyro3").text("gamma " + "на себя " + gamma);
+    gyro_sensor = "bad"
+    $("#text1").text("Верните телефон в правильное положение (На себя)");
+    onoff()
 }
 if (gamma < -700 && level == 1) {
-  $("#gyro3").text("gamma "+"от себя "+gamma);
-  $('video')[0].player.pause();
-  $('#modal1').show();
-  $("#text1").text( "Верните телефон в правильное положение (От себя)" );
+    $("#gyro3").text("gamma " + "от себя " + gamma);
+    gyro_sensor = "bad"
+    $("#text1").text("Верните телефон в правильное положение (От себя)");
+    onoff();
 }
 
 
@@ -136,13 +147,14 @@ if (restcounter>0 && restcounter<300){
 
 if (restcounter>=300 && restcounter<400){
   restcountertext="плохо";
-  restcountertext="Пожалуйста держите телефон в руках, не тряся им";
+  $("#text1").text("Пожалуйста держите телефон в руках, не тряся им");
   restcounter=401;
+  acc_sensor = "bad";
+  onoff();
 };
 
 if (restcounter>400){
 setTimeout(resetter, 3000);
-
 };
 
 
